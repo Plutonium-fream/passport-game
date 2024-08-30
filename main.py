@@ -11,12 +11,16 @@ def welcome_screen():
     print("Make no mistakes!")
 
 
+
 welcome_screen()
 
-print("")
+
 print("Its 9 AM 14.4.2005")
 mistakes = 0
 people_left = 10
+input("Press enter to begin!  ")
+print("")
+print("")
 while people_left > 0:
     people_left = people_left - 1
     fullname = random.choice(info.names) + " " + random.choice(info.surnames)
@@ -27,6 +31,7 @@ while people_left > 0:
     print(f"PERSON: {destanation} ")
     print("YOU: Can i see your passport?")
     print("PERSON: Here you go!")
+    print("")
     legit1 = random.randint(1, 2)
     if legit1 == 1:
         passurname = fullname
@@ -41,19 +46,23 @@ while people_left > 0:
 
     print(f"FULL NAME: {passurname}")
     print(f"PASSPORT EXPIRATION YEAR: {expiration}")
-    print("NLD>>>>>>>>>>>40583AH>>>>>>>>>>>>>>>>>>")
+    print("LSL>>>>>>>>>>>40583AH>>>>>>>>>>>>>>>>>>")
+    print("")
     correct = input("Can this person pass? (Y/N)").upper()
     if correct == "Y":
-        if legit1 and legit2 == 1:
+        if legit1 == 1 and legit2 == 1:
             print("Everything looks good! This person was allowed to pass.")
         else:
             print("WARNING: This person was not allowed to pass!")
             mistakes = mistakes + 1
     if correct == "N":
-        if legit1 and legit2 == 1:
+        if legit1 == 1 and legit2 == 1:
             print("This person was clear for entry!")
             mistakes = mistakes + 1
         else:
             print("Thats right, his documents where not correct")
-print(f"You made {mistakes} mistake(s)")
-input("Press enter to exit...")
+if mistakes == 0:
+    print("Wow, No mistakes! You are promoted!")
+else:
+    print(f"You made {mistakes} mistake(s)")
+    input("Press enter to exit...")
