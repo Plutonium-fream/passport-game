@@ -1,6 +1,7 @@
 import random
 import time
 import threading
+
 names = [
     "Aaron", "Abigail", "Adam", "Adrian", "Aiden",
     "Alexa", "Alice", "Alyssa", "Amanda", "Amber",
@@ -63,6 +64,7 @@ def welcome_screen():
     print("You have to check as many people as possible in one minute.")
     print("Try to make no mistakes.")
     print("Good luck!")
+
 
 welcome_screen()
 
