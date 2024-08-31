@@ -1,4 +1,6 @@
 import random
+import time
+import threading
 names = [
     "Aaron", "Abigail", "Adam", "Adrian", "Aiden",
     "Alexa", "Alice", "Alyssa", "Amanda", "Amber",
@@ -55,23 +57,40 @@ def welcome_screen():
     print("Welcome to this simple game!")
     print("Its based of the game Papers Please")
     print("Make sure to check it out, its really good")
-    print("\n You have to check if the information they say is correct.")
+    print("\n You have to check if the information they say is correct. And follow the extra conditions that you will "
+          "hear at the start")
     print("You can do that by comparing the information in the passport to the answers they give!")
-    print("Make no mistakes!")
-
-
+    print("You have to check as many people as possible in one minute.")
+    print("Try to make no mistakes.")
+    print("Good luck!")
 
 welcome_screen()
 
 
+def background_timer(seconds):
+    global timeleft
+    timeleft = seconds
+    while seconds > 0:
+        time.sleep(1)
+        timeleft = timeleft - 1
+
+
+def start_timer(seconds):
+    timer_thread = threading.Thread(target=background_timer, args=(seconds,))
+    timer_thread.daemon = True
+    timer_thread.start()
+
+
 print("Its 9 AM 14.4.2005")
 mistakes = 0
-people_left = 10
+people = 0
 input("Press enter to begin!  ")
 print("")
 print("")
-while people_left > 0:
-    people_left = people_left - 1
+start_timer(60)
+while timeleft > 0:
+    print(f"You have {timeleft} seconds left")
+    people += 1
     fullname = random.choice(names) + " " + random.choice(surnames)
     destanation = random.choice(destenations)
     print("YOU: Hello, What is your full name?")
