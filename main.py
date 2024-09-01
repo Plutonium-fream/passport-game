@@ -52,13 +52,22 @@ destenations = [
     "Kingsreach", "Luminara", "Mystvale", "Nimbus City", "Oakshade",
     "Pyrestone", "Quartz Harbor", "Ravenbrook", "Silverpeak", "Thornfield"
 ]
+countries = [
+    "Zephyrosia",
+    "Luminara",
+    "Aqualis",
+    "Drakoria",
+    "Solvatria",
+    "Virelia",
+    "Cyranthia"
+]
 
 
 def welcome_screen():
     print("Welcome to this simple game!")
     print("Its based of the game Papers Please")
     print("Make sure to check it out, its really good")
-    print("\n You have to check if the information they say is correct. And follow the extra conditions that you will "
+    print("\nYou have to check if the information they say is correct. And follow the extra conditions that you will "
           "hear at the start")
     print("You can do that by comparing the information in the passport to the answers they give!")
     print("You have to check as many people as possible in one minute.")
@@ -67,6 +76,16 @@ def welcome_screen():
 
 
 welcome_screen()
+
+
+class Scenerio:
+    def __init__(self, description, name, code):
+        description = description
+        name = name
+        code = code
+
+
+virus_spread = Scenerio("Dont let people from Drakoria in, their country has a deadly virus", "Drakorian Virus", 1)
 
 
 def background_timer(seconds):
@@ -93,6 +112,7 @@ start_timer(60)
 while timeleft > 0:
     print(f"You have {timeleft} seconds left")
     people += 1
+    residence = random.choice(countries)
     fullname = random.choice(names) + " " + random.choice(surnames)
     destanation = random.choice(destenations)
     print("YOU: Hello, What is your full name?")
@@ -113,7 +133,7 @@ while timeleft > 0:
         expiration = random.randint(2006, 2010)
     else:
         expiration = random.randint(2001, 2004)
-
+    print(f"Citizen of the country of {residence}")
     print(f"FULL NAME: {passurname}")
     print(f"PASSPORT EXPIRATION YEAR: {expiration}")
     print("LSL>>>>>>>>>>>40583AH>>>>>>>>>>>>>>>>>>")
