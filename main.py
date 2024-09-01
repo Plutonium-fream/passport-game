@@ -61,6 +61,12 @@ countries = [
     "Virelia",
     "Cyranthia"
 ]
+viruscountries = [
+    "Zephyrosia",
+    "Aqualis",
+    "Drakoria",
+
+]
 
 
 def welcome_screen():
@@ -75,23 +81,51 @@ def welcome_screen():
     print("Good luck!")
 
 
+class Scenerio:
+    def __init__(self, description, name, code):
+        description = description
+        name = name
+        code = code
 
 
+virusspread = Scenerio("Dont let people from Drakoria in! They carry a deadly virus.", "Virus Spread", 1)
+reverse = Scenerio(
+    "There is an error in the system computers. Everything is reversed! Let people with wrong information and expired "
+    "passports in and reject people with good passports!",
+    "Reversed", 1)
 
 welcome_screen()
+
+currentscenerio = "plain"
+currentscenerio_class = "none"
+
+
 def scenerio_choosing():
     global currentscenerio
+    global currentscenerio_class
+    print("")
     using_custom_scenerio = input("Do you want to use a scenario? (Y/N) ").upper()
 
     if using_custom_scenerio == "Y":
         currentscenerio = input("What scenerio do you want to use? Virus Spread (1) Reverse (2)")
-     if currentscenerio == 1:
-         currentscenerio ==
+        currentscenerio = int(currentscenerio)
+        if currentscenerio == 1:
+            currentscenerio = "virusspread"
+            currentscenerio_class = virusspread
+        elif currentscenerio == 2:
+            currentscenerio = "reverse"
+            currentscenerio_class = reverse
+
+    elif using_custom_scenerio == "N":
+        currentscenerio = "plain"
+
+    else:
+        say = print
+        say("You need to say Y for yes and N for no")
+        scenerio_choosing()
 
 
-
-
-
+scenerio_choosing()
 
 
 def background_timer(seconds):
@@ -108,56 +142,187 @@ def start_timer(seconds):
     timer_thread.start()
 
 
-print("Its 9 AM 14.4.2005")
-mistakes = 0
-people = 0
-input("Press enter to begin!  ")
-print("")
-print("")
-start_timer(60)
-while timeleft > 0:
-    print(f"You have {timeleft} seconds left")
-    people += 1
-    residence = random.choice(countries)
-    fullname = random.choice(names) + " " + random.choice(surnames)
-    destanation = random.choice(destenations)
-    print("YOU: Hello, What is your full name?")
-    print(f"PERSON: {fullname}")
-    print("YOU: Destenation?")
-    print(f"PERSON: {destanation} ")
-    print("YOU: Can i see your passport?")
-    print("PERSON: Here you go!")
-    print("")
-    legit1 = random.randint(1, 2)
-    if legit1 == 1:
-        passurname = fullname
-    elif legit1 == 2:
-        passurname = random.choice(surnames) + ", " + random.choice(names)
+def plain():
 
-    legit2 = random.randint(1, 2)
-    if legit2 == 1:
-        expiration = random.randint(2006, 2010)
-    else:
-        expiration = random.randint(2001, 2004)
-    print(f"Citizen of the country of {residence}")
-    print(f"FULL NAME: {passurname}")
-    print(f"PASSPORT EXPIRATION YEAR: {expiration}")
-    print("LSL>>>>>>>>>>>40583AH>>>>>>>>>>>>>>>>>>")
-    print("")
-    correct = input("Can this person pass? (Y/N)").upper()
-    if correct == "Y":
-        if legit1 == 1 and legit2 == 1:
-            print("Everything looks good! This person was allowed to pass.")
-        else:
-            print("WARNING: This person was not allowed to pass!")
-            mistakes = mistakes + 1
-    if correct == "N":
-        if legit1 == 1 and legit2 == 1:
-            print("This person was clear for entry!")
-            mistakes = mistakes + 1
-        else:
-            print("Thats right, his documents where not correct")
+    print("Its 9 AM 14.4.2005")
 
+    global mistakes
+    mistakes = 0
+
+    people = 0
+    input("Press enter to begin!  ")
+    print("")
+    print("")
+    start_timer(60)
+    while timeleft > 0:
+        print(f"You have {timeleft} seconds left")
+        people += 1
+        residence = random.choice(countries)
+        fullname = random.choice(names) + " " + random.choice(surnames)
+        destanation = random.choice(destenations)
+        print("YOU: Hello, What is your full name?")
+        print(f"PERSON: {fullname}")
+        print("YOU: Destenation?")
+        print(f"PERSON: {destanation} ")
+        print("YOU: Can i see your passport?")
+        print("PERSON: Here you go!")
+        print("")
+        legit1 = random.randint(1, 2)
+        if legit1 == 1:
+            passurname = fullname
+        elif legit1 == 2:
+            passurname = random.choice(surnames) + ", " + random.choice(names)
+
+        legit2 = random.randint(1, 2)
+        if legit2 == 1:
+            expiration = random.randint(2006, 2010)
+        else:
+            expiration = random.randint(2001, 2004)
+        print(f"Citizen of the country of {residence}")
+        print(f"FULL NAME: {passurname}")
+        print(f"PASSPORT EXPIRATION YEAR: {expiration}")
+        print("LSL>>>>>>>>>>>40583AH>>>>>>>>>>>>>>>>>>")
+        print("")
+        correct = input("Can this person pass? (Y/N)").upper()
+        if correct == "Y":
+            if legit1 == 1 and legit2 == 1:
+                print("Everything looks good! This person was allowed to pass.")
+            else:
+                print("WARNING: This person was not allowed to pass!")
+                mistakes = mistakes + 1
+        if correct == "N":
+            if legit1 == 1 and legit2 == 1:
+                print("This person was clear for entry!")
+                mistakes = mistakes + 1
+            else:
+                print("Thats right, his documents where not correct")
+
+
+def virusspreadd(discriptionclass):
+    print("Its 9 AM 14.4.2005")
+    global mistakes
+    mistakes = 0
+    people = 0
+    print("A note appears at your desk")
+    print("Dont let people from Drakoria in! They carry a deadly virus")
+    input("Press enter to begin!  ")
+    print("")
+    print("")
+    start_timer(60)
+    while timeleft > 0:
+        print(f"You have {timeleft} seconds left")
+        people += 1
+        residence = random.choice(viruscountries)
+        fullname = random.choice(names) + " " + random.choice(surnames)
+        destanation = random.choice(destenations)
+        print("YOU: Hello, What is your full name?")
+        print(f"PERSON: {fullname}")
+        print("YOU: Destenation?")
+        print(f"PERSON: {destanation} ")
+        print("YOU: Can i see your passport?")
+        print("PERSON: Here you go!")
+        print("")
+        legit1 = random.randint(1, 2)
+        if legit1 == 1:
+            passurname = fullname
+        elif legit1 == 2:
+            passurname = random.choice(surnames) + ", " + random.choice(names)
+
+        legit2 = random.randint(1, 2)
+        if legit2 == 1:
+            expiration = random.randint(2006, 2010)
+        else:
+            expiration = random.randint(2001, 2004)
+        print(f"Citizen of the country of {residence}")
+        print(f"FULL NAME: {passurname}")
+        print(f"PASSPORT EXPIRATION YEAR: {expiration}")
+        print("LSL>>>>>>>>>>>40583AH>>>>>>>>>>>>>>>>>>")
+        print("")
+        correct = input("Can this person pass? (Y/N)").upper()
+        if correct == "Y":
+            if residence == "Drakoria":
+                print("You just let an infected person in!")
+                mistakes = mistakes + 1
+            else:
+                if legit1 == 1 and legit2 == 1:
+                    print("Everything looks good! This person was allowed to pass.")
+                else:
+                    print("WARNING: This person was not allowed to pass!")
+                    mistakes = mistakes + 1
+        if correct == "N":
+            if residence == "Drakoria":
+                print("Goodjob! That person was infected!")
+            else:
+                if legit1 == 1 and legit2 == 1:
+                    print("This person was clear for entry!")
+                    mistakes = mistakes + 1
+                else:
+                    print("Thats right, his documents where not correct")
+
+
+def reversee():
+    print("There is an error in the system computers. Everything is reversed! Let people with wrong information and "
+          "expired"
+          "passports in and reject people with good passports!")
+    print("Its 9 AM 14.4.2005")
+    global mistakes
+    mistakes = 0
+
+    people = 0
+    input("Press enter to begin!  ")
+    print("")
+    print("")
+    start_timer(60)
+    while timeleft > 0:
+        print(f"You have {timeleft} seconds left")
+        people += 1
+        residence = random.choice(countries)
+        fullname = random.choice(names) + " " + random.choice(surnames)
+        destanation = random.choice(destenations)
+        print("YOU: Hello, What is your full name?")
+        print(f"PERSON: {fullname}")
+        print("YOU: Destenation?")
+        print(f"PERSON: {destanation} ")
+        print("YOU: Can i see your passport?")
+        print("PERSON: Here you go!")
+        print("")
+        legit1 = random.randint(1, 2)
+        if legit1 == 1:
+            passurname = fullname
+        elif legit1 == 2:
+            passurname = random.choice(surnames) + ", " + random.choice(names)
+
+        legit2 = random.randint(1, 2)
+        if legit2 == 1:
+            expiration = random.randint(2006, 2010)
+        else:
+            expiration = random.randint(2001, 2004)
+        print(f"Citizen of the country of {residence}")
+        print(f"FULL NAME: {passurname}")
+        print(f"PASSPORT EXPIRATION YEAR: {expiration}")
+        print("LSL>>>>>>>>>>>40583AH>>>>>>>>>>>>>>>>>>")
+        print("")
+        correct = input("Can this person pass? (Y/N)").upper()
+        if correct == "Y":
+            if legit1 == 2 and legit2 == 2:
+                print("Everything looks good! This person was allowed to pass.")
+            else:
+                print("WARNING: This person was not allowed to pass!")
+                mistakes = mistakes + 1
+        if correct == "N":
+            if legit1 == 2 and legit2 == 2:
+                print("This person was clear for entry!")
+                mistakes = mistakes + 1
+            else:
+                print("Thats right, his documents where not correct")
+
+
+if currentscenerio == "plain":
+    plain()
+elif currentscenerio == "virusspread":
+    virusspreadd(virusspread)
+elif currentscenerio == "reverse":
+    reversee()
 
 
 if mistakes == 0:
