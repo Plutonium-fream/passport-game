@@ -75,17 +75,23 @@ def welcome_screen():
     print("Good luck!")
 
 
+
+
+
 welcome_screen()
+def scenerio_choosing():
+    global currentscenerio
+    using_custom_scenerio = input("Do you want to use a scenario? (Y/N) ").upper()
+
+    if using_custom_scenerio == "Y":
+        currentscenerio = input("What scenerio do you want to use? Virus Spread (1) Reverse (2)")
+     if currentscenerio == 1:
+         currentscenerio ==
 
 
-class Scenerio:
-    def __init__(self, description, name, code):
-        description = description
-        name = name
-        code = code
 
 
-virus_spread = Scenerio("Dont let people from Drakoria in, their country has a deadly virus", "Drakorian Virus", 1)
+
 
 
 def background_timer(seconds):
@@ -151,6 +157,9 @@ while timeleft > 0:
             mistakes = mistakes + 1
         else:
             print("Thats right, his documents where not correct")
+
+
+
 if mistakes == 0:
     print("Wow, No mistakes! You are promoted!")
 else:
